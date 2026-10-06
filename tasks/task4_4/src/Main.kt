@@ -9,5 +9,55 @@ import com.github.ajalt.mordant.table.table
 import com.github.ajalt.mordant.terminal.Terminal
 
 fun main(args: Array<String>) {
-    // Add your code here
+
+    if (args.size != 3) {
+        println("Error: requires 3 arguments")
+        exitProcess(1)
+    }
+    
+    val startTemp = args[0].toDouble()
+    val maxTemp = args[1].toDouble()
+    val increment = args[2].toDouble()
+    
+    var currentTemp = startTemp
+    
+    // BASIC VERSION
+    // while (currentTemp <= maxTemp) {
+    //     val fahrenheit = currentTemp * 9 / 5 + 32
+
+    //     println("%8.1f %8.1f".format(currentTemp, fahrenheit))
+        
+    //     currentTemp += increment
+    // }
+
+    // MORDANT VERSION
+    val terminal = Terminal()
+
+    var currentTemp = startTemp
+
+    terminal.println(
+        table {
+            header {
+                row("Celsius", "Fahrenheit")
+            }
+
+            body {
+
+                while (currentTemp <= maxTemp) {
+
+                    val fahrenheit =
+                        currentTemp * 9 / 5 + 32
+
+                    row(
+                        "%.1f".format(currentTemp),
+                        "%.1f".format(fahrenheit)
+                    )
+
+                    currentTemp += increment
+                }
+            }
+        }
+    )
+    
 }
+
