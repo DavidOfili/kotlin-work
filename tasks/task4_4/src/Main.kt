@@ -19,9 +19,9 @@ fun main(args: Array<String>) {
     val maxTemp = args[1].toDouble()
     val increment = args[2].toDouble()
     
-    var currentTemp = startTemp
-    
     // BASIC VERSION
+    // var currentTemp = startTemp
+    
     // while (currentTemp <= maxTemp) {
     //     val fahrenheit = currentTemp * 9 / 5 + 32
 
